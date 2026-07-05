@@ -1,0 +1,55 @@
+# ============================================
+# DO NOT DELETE: 保护 standalone/ 等关键目录
+# 每次修改前必须核对 DO_NOT_DELETE.md
+# ============================================
+
+__pycache__/
+*.pyc
+# 忽略所有 Python 脚本（核心算法保护）
+*.py
+# 仅保留部署和运维必需的脚本
+!deploy_now.py
+!update_data_v2.py
+!backup_daily.py
+!send_alert.py
+!deploy_audit.py
+!fetch_analyst_ratings.py
+!fetch_policy_density.py
+!generate_triple_resonance_history.py
+!update_triple_resonance_daily.py
+*.bat
+.wrangler/
+worker/
+backup/
+backup_*/
+# 数据目录：全部走坚果云实时同步，不进 Git（避免双机数据冲突）
+data/
+dist/data/
+# 生成产物：由 update_data_v2.py 生成，不进 Git
+dist/index.html
+dist/index_master.html
+dist/triple_resonance.html
+deploy_log.txt
+scanner_full.log
+.workbuddy/
+workbuddy/
+# 部署锁（通过 git add -f 强制管理，不参与 git status）
+.deploy_lock
+node_modules/
+*.log
+.env
+pwd.yaml
+backups/2026-06-18/
+*.bak
+*.bak.*
+# 坚果云冲突文件（双机同步产生，不应进入版本控制）
+*-冲突-*
+*-conflict-*
+dist/data/.enhance_log.txt
+dist/data/zsxq_selenium_snapshot.txt
+!enhanced_backup.py
+_gh_pages_deploy/
+.index_master_md5_lock
+standalone/
+# 构建产物：dist/standalone/ 不进 Git（由部署脚本动态生成）
+dist/standalone/
