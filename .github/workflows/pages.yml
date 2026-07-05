@@ -23,33 +23,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: 校验 dist 目录有效性
-        run: |
-          if [ ! -d "./dist" ]; then
-            echo "错误：dist 目录不存在，终止部署"
-            exit 1
-          fi
-          if [ -z "$(ls -A ./dist)" ]; then
-            echo "错误：dist 目录为空，终止部署"
-            exit 1
-          fi
-
-      - name: 确保 .nojekyll 文件存在
-        run: |
-          if [ ! -f "./dist/.nojekyll" ]; then
-            cp .nojekyll ./dist/.nojekyll
-            echo "已复制 .nojekyll 到 dist 目录"
-          fi
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
